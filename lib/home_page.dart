@@ -1,4 +1,4 @@
-import 'package:appm1/book.dart';
+import 'package:appm1/anime.dart';
 import 'package:appm1/detail_page.dart';
 import 'package:flutter/material.dart';
 
@@ -7,98 +7,167 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text("AniListic"),
+        title: const Text(
+          "AniListic",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.black,
+        elevation: 4,
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Stack(
               children: [
-                const Text(
-                  "data", 
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                Container(
+                  height: 200,
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("images/satoru.jpg"),
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  Image.asset("images/banner.png", 
-                  width: 100,
-                  )
+                ),
+                Container(
+                  height: 200,
+                  width: double.infinity,
+                  color: Colors.black.withOpacity(0.7), // Overlay untuk kontras teks
+                ),
+                Positioned(
+                  left: 20,
+                  bottom: 20,
+                  child: const Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "Welcome to\n",
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ),
+                        TextSpan(
+                          text: "AniListic!",
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
-            //teks buku
-            const Padding(padding: EdgeInsets.symmetric(vertical: 10.0),
-            child: Text(
-              "Anime Rekomendation",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 15.0),
+              child: Text(
+                "Anime Recommendations",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
             ),
-            ),
-
-            //list buku
             ListView.builder(
-              itemCount: listBook.length,
+              itemCount: listAnime.length,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index){
-                final book = listBook[index];
+              itemBuilder: (context, index) {
+                final anime = listAnime[index];
                 return GestureDetector(
-                  onTap: (){
-                    //berpindah halaman
+                  onTap: () {
                     Navigator.push(
-                      context, 
+                      context,
                       MaterialPageRoute(
-                        builder: (context) => DetailPage(book: book),
-                        ),
-                        );
+                        builder: (context) => DetailPage(anime: anime),
+                      ),
+                    );
                   },
                   child: Container(
                     width: double.infinity,
-                    height: 90,
-                    padding: const EdgeInsets.all(8),
-                    margin: const EdgeInsets.only(bottom: 10),
+                    height: 105,
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: const [
+                      color: Colors.grey[900],
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
                         BoxShadow(
-                          color: Colors.grey,
+                          color: Colors.white.withOpacity(0.1),
                           blurRadius: 6.0,
-                          offset: Offset(0, 1),
+                          offset: const Offset(0, 2),
                         ),
                       ],
                     ),
                     child: Row(
                       children: [
-                        Image.asset(book.image, width: 64,),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              book.name,
-                              style: const TextStyle(
-                                fontSize: 20, 
-                                fontWeight: FontWeight.w500),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.asset(anime.image, width: 80, fit: BoxFit.cover),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                anime.judul,
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
                               ),
-                            Text(
-                              book.categoryBook,
-                              style: const TextStyle(
-                                fontSize: 20,
+                              Text(
+                                anime.studio,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white70,
+                                ),
                               ),
+                              const SizedBox(height: 4),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.star,
+                                    color: Colors.yellow,
+                                    size: 20,
+                                  ),
+                                  const SizedBox(width: 5),
+                                  Text(
+                                    anime.rate.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
                               ),
-                          ],
-                        )
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 );
-              }
+              },
             ),
           ],
-        ),
         ),
       ),
     );
