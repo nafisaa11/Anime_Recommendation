@@ -40,7 +40,8 @@ class HomePage extends StatelessWidget {
                 Container(
                   height: 200,
                   width: double.infinity,
-                  color: Colors.black.withOpacity(0.7), // Overlay untuk kontras teks
+                  color: Colors.black
+                      .withOpacity(0.7), 
                 ),
                 Positioned(
                   left: 20,
@@ -100,7 +101,8 @@ class HomePage extends StatelessWidget {
                     width: double.infinity,
                     height: 105,
                     padding: const EdgeInsets.all(10),
-                    margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
                     decoration: BoxDecoration(
                       color: Colors.grey[900],
                       borderRadius: BorderRadius.circular(12),
@@ -116,7 +118,8 @@ class HomePage extends StatelessWidget {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          child: Image.asset(anime.image, width: 80, fit: BoxFit.cover),
+                          child: Image.asset(anime.image,
+                              width: 80, fit: BoxFit.cover),
                         ),
                         const SizedBox(width: 12),
                         Expanded(

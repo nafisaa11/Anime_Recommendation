@@ -9,15 +9,15 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Background hitam
+      backgroundColor: Colors.black, 
       appBar: AppBar(
         title: Text(
           anime.judul,
-          style: const TextStyle(color: Colors.white), // Warna teks putih
+          style: const TextStyle(color: Colors.white), 
         ),
         backgroundColor: Colors.black,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.white), // Tombol back putih
+        iconTheme: const IconThemeData(color: Colors.white), 
       ),
       body: ListView(
         children: [
@@ -30,7 +30,7 @@ class DetailPage extends StatelessWidget {
                 image: AssetImage(anime.image),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.3), // Efek gelap pada gambar
+                  Colors.black.withOpacity(0.3), 
                   BlendMode.darken,
                 ),
               ),
@@ -52,7 +52,7 @@ class DetailPage extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w600,
-                  color: Colors.white, // Warna teks putih
+                  color: Colors.white, 
                 ),
               ),
             ),
@@ -64,20 +64,20 @@ class DetailPage extends StatelessWidget {
             children: [
               animeInfo(anime.studio.toString(), "Studio"),
               animeInfo(anime.episode.toString(), "Episode"),
-              animeRating(anime.rate.toString()), // Menggunakan fungsi khusus untuk rating dengan ikon bintang
+              animeRating(anime.rate.toString()), 
             ],
           ),
 
           // Deskripsi
           const Padding(
-            padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0), // Tambah padding agar lebih ke tengah
+            padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0), 
             child: Text(
               "Description",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
-                color: Colors.white, // Warna teks putih
+                color: Colors.white, 
               ),
             ),
           ),
@@ -100,7 +100,7 @@ class DetailPage extends StatelessWidget {
           style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,
-            color: Colors.white, // Warna teks putih
+            color: Colors.white, 
           ),
         ),
         Text(
@@ -108,14 +108,14 @@ class DetailPage extends StatelessWidget {
           style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w500,
-            color: Colors.white70, // Warna teks putih agak redup
+            color: Colors.white70, 
           ),
         )
       ],
     );
   }
 
-  // Fungsi khusus untuk menampilkan rating dengan ikon bintang ⭐
+  // Fungsi untuk menampilkan rating dengan ikon bintang 
   Widget animeRating(String rating) {
     return Column(
       children: [
@@ -123,17 +123,17 @@ class DetailPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Icon(
-              Icons.star, // Ikon bintang
-              color: Colors.yellow, // Warna kuning
+              Icons.star, 
+              color: Colors.yellow, 
               size: 22,
             ),
-            const SizedBox(width: 5), // Jarak kecil antara ikon dan teks
+            const SizedBox(width: 5), 
             Text(
               rating,
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
-                color: Colors.white, // Warna teks putih
+                color: Colors.white, 
               ),
             ),
           ],
@@ -143,7 +143,7 @@ class DetailPage extends StatelessWidget {
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w500,
-            color: Colors.white70, // Warna teks putih agak redup
+            color: Colors.white70, 
           ),
         ),
       ],
@@ -156,9 +156,11 @@ class DetailPage extends StatelessWidget {
       style: const TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.w400,
-        color: Colors.white, // Warna teks putih
+        color: Colors.white, 
       ),
-      textAlign: TextAlign.justify, // Membuat teks rata kanan-kiri
+      textAlign: TextAlign.justify, 
     );
   }
 }
+
+
